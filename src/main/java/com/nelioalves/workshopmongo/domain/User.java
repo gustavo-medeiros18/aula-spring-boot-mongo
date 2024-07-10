@@ -6,8 +6,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Document annotation is used to indicate that this
+ * class is a MongoDB document. The collection attribute
+ * can be used to specify the name of the collection where
+ * the document will be stored. If not specified, the
+ * collection name will be the same as the class name.
+ */
 @Document(collection = "user")
 public class User implements Serializable {
+  /**
+   * Id annotation is used to indicate that this field
+   * is the primary key of the document.
+   */
   @Id
   private String id;
   private String name;
