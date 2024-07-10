@@ -31,6 +31,11 @@ public class UserService {
     return repo.insert(obj);
   }
 
+  public void delete (String id) {
+    findById(id);
+    repo.deleteById(id);
+  }
+
   /**
    * This method was inserted in UserService instead of UserDto
    * because, in future updates, it might be necessary to access
