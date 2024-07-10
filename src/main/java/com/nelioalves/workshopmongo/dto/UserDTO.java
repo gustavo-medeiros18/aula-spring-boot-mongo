@@ -4,16 +4,16 @@ import com.nelioalves.workshopmongo.domain.User;
 
 import java.io.Serializable;
 
-public class UserDto implements Serializable {
+public class UserDTO implements Serializable {
   private String id;
   private String name;
   private String email;
 
-  public UserDto() {
+  public UserDTO() {
 
   }
 
-  public UserDto(User obj) {
+  public UserDTO(User obj) {
     this.id = obj.getId();
     this.name = obj.getName();
     this.email = obj.getEmail();
