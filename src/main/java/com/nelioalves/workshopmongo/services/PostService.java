@@ -6,6 +6,7 @@ import com.nelioalves.workshopmongo.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -19,5 +20,9 @@ public class PostService {
     } catch (NoSuchElementException e) {
       throw new ObjectNotFoundException("Objeto não encontrado");
     }
+  }
+
+  public List<Post> findByTitle(String text) {
+    return repo.findByTitleContainingIgnoreCase(text);
   }
 }
