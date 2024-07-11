@@ -2,11 +2,24 @@ package com.nelioalves.workshopmongo.repository;
 
 import com.nelioalves.workshopmongo.domain.Post;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
 public interface PostRepository extends MongoRepository<Post, String>{
+  /**
+   * Spring data supports custom query methods. For creating a custom
+   * query method, we need to follow a naming convention. Spring will
+   * automatically implement the query based on the method name.
+   */
   List<Post> findByTitleContainingIgnoreCase(String text);
+
+  /**
+   * The query decorator can also be used to create custom queries.
+   * It receives a JSON string with the MongoDB query to be executed.
+   */
+  @Query("{ 'title': { $regex: ?0, $options: 'i' } }")
+  List<Post> searchTitle(String text);
 }
