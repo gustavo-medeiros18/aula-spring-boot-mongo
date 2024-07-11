@@ -1,9 +1,12 @@
 package com.nelioalves.workshopmongo.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -23,6 +26,15 @@ public class User implements Serializable {
   private String id;
   private String name;
   private String email;
+
+  /**
+   * DBRef annotation is used to indicate that this field
+   * is a reference to another document. lazy attribute is
+   * used to indicate that the reference will be loaded only
+   * when it is accessed.
+   */
+  @DBRef(lazy = true)
+  private List<Post> posts = new ArrayList<>();
 
   public User() {
 
@@ -46,6 +58,10 @@ public class User implements Serializable {
     return email;
   }
 
+  public List<Post> getPosts() {
+    return posts;
+  }
+
   public void setId(String id) {
     this.id = id;
   }
@@ -56,6 +72,10 @@ public class User implements Serializable {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public void setPosts(List<Post> posts) {
+    this.posts = posts;
   }
 
   @Override
